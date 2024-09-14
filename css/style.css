@@ -9,6 +9,9 @@
     --bez: cubic-bezier(0, 0, 0.43, 1.49);
     --bg-color: #191919
 }
+::-webkit-scrollbar{
+    display: none;
+}
 *{
     margin: 0;
     padding: 0;
@@ -42,7 +45,7 @@ ul.dropdown{
     background-color: #222;
     padding: 0;
 }
-.nav-menu li:hover ul.dropdown{
+.nav-menu li:hover ul.dropdown, .nav-menu li:active ul.dropdown{
     display: block;
 }
 .menu{
@@ -84,7 +87,7 @@ dl,ol,ul{
 .nav-link {
     font-size: 1.5rem;
     font-weight: 400;
-    color: #fff;
+    color: #fff!important;
     /* change */
 }
 .nav-menu a{
@@ -119,6 +122,7 @@ dl,ol,ul{
         box-shadow:
             0 10px 27px rgba(0, 0, 0, 0.05);
         z-index: 99;
+        padding: 0;
     }
 
     .nav-link {
@@ -127,6 +131,7 @@ dl,ol,ul{
 
     .nav-menu.active {
         left: 0;
+        padding: 0;
     }
 
     .nav-item {
@@ -158,6 +163,7 @@ dl,ol,ul{
     }
 
 }
+
 /* BANNER CHAU TINH TRI */
 .banner{
     overflow: hidden;

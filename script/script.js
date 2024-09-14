@@ -40,10 +40,32 @@ function mobileMenu() {
 // when we click on hamburger icon its close 
 
 const navLink = document.querySelectorAll(".nav-link");
+const dropdownLink = document.querySelector(".nav-item > .nav-link");
 
-navLink.forEach(n => n.addEventListener("click", closeMenu));
+navLink.forEach(n => {
+    n.addEventListener("click", function(event) {
+        // Kiểm tra xem có phải click vào dropdown hay không
+        if (n === dropdownLink) {
+            event.stopPropagation(); // Ngăn việc click vào navLink khác
+        } else {
+            closeMenu(); // Đóng menu khi click vào các liên kết khác
+        }
+    });
+});
 
-function closeMenu() {
-    hamburger.classList.remove("active");
-    navMenu.classList.remove("active");
+//BACK-TO-TOP
+ const toTop=document.getElementById('back-to-top');
+ window.addEventListener("scroll", function (){
+   if(window.scrollY > 100){
+     toTop.classList.add("show");
+   }else{
+     toTop.classList.remove("show");
+   }
+ })
+//FAQS toggle
+const fag = document.querySelectorAll('.faq-one');
+for(let f of fag){
+  f.addEventListener("click",function(){
+    f.classList.toggle("active");
+  });
 }
