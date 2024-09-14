@@ -25,28 +25,25 @@ let list = document.querySelector(".slider .list");
             reloadSlider();
         })
     })
+// ========== KHU VUC NAV BAR ===================
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-menu");
 
-    // const swiper = new Swiper('.movie', {
+hamburger.addEventListener("click", mobileMenu);
 
-    // });
+function mobileMenu() {
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+}
 
-    var swiper = new Swiper(".feedback-content", {
-      slidesPerView: 3,
-      spaceBetween: 20,
-      freeMode: true,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      breakpoints:{
-        0:{
-          slidesPerView: 1,
-        },
-        768:{
-          slidesPerView: 2,
-        },
-        950:{
-          slidesPerView: 3,
-        },
-      }
-    });
+
+// when we click on hamburger icon its close 
+
+const navLink = document.querySelectorAll(".nav-link");
+
+navLink.forEach(n => n.addEventListener("click", closeMenu));
+
+function closeMenu() {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+}

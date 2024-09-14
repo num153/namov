@@ -21,52 +21,147 @@ body{
 h1{
     margin: 0;
 }
-.menu{
-    min-height: 50px;
-    padding: 20px;
-    background-color: black;
-    display: flex;
-    justify-content: space-between;
+/* KHU VUC NAV BAR */
+.menu li {
+    list-style: none;
 }
-.menu .left{
-    display: flex;
-    align-items: center;
-}
-.menu .left h1{
-    color: var(--text-color);
-    font-size: 36px;
-}
-.menu .right nav{
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
-nav a{
+
+.menu a {
     text-decoration: none;
     color: white;
-    font-size: 20px;
+}
+ul.dropdown li{
     display: block;
-    padding: 10px 40px;
+    font-size: 1.3rem;
 }
-nav a:hover{
-    background-color: var(--text-color);
-    transition: 0.3s;
-}
-.toggle-menu{
-    height: 100%;
+ul.dropdown{
+    z-index: 999999;
     display: none;
+    width: 100%;
+    position: absolute;
+    background-color: #222;
+    padding: 0;
+}
+.nav-menu li:hover ul.dropdown{
+    display: block;
+}
+.menu{
+    background-color: black;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+}
+dl,ol,ul{
+    margin: 0;
+}
+.hamburger {
+    display: none;
+}
+.navbar > a{
+    color:#CD1818 ;
+    font-weight: bold;
+}
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    /* background-color: #101010; */
+    background-color: #fff;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-link {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #fff;
+    /* change */
+}
+.nav-menu a{
+    transition: 0.2s;
+    padding: 10px 40px;
+    display: block;
+}
+.nav-menu a:hover {
+    color: white;
+    background-color:#CD1818;
     cursor: pointer;
 }
-.toggle-menu i{
-    color: white;
-    font-size: 2em;
-    transform: translateY(7px);
-    
+
+.nav-logo {
+    font-size: 2.5rem;
+    font-weight: 500;
+    /* color: #482ff7; */
+    color: #fff;
+}
+
+@media only screen and (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 5rem;
+        flex-direction: column;
+        background-color: #222;
+        width: 100%;
+        border-radius: 10px;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow:
+            0 10px 27px rgba(0, 0, 0, 0.05);
+        z-index: 99;
+    }
+
+    .nav-link {
+        color: #fff;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-item {
+        margin: 1rem 0;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    ul.dropdown{
+        width: 100vw;
+        left: 0;
+    }
+    ul.dropdown li a{
+        font-size:1.3rem ;
+    }
+
 }
 /* BANNER CHAU TINH TRI */
 .banner{
     overflow: hidden;
-    height: 85vh;
+    height: 87vh;
 }
  .slider{
     width: 100vw;
@@ -223,7 +318,6 @@ label {
     filter: grayscale(0.8);
 }
 .movie{
-    background-color: gold;
     width: 100%;
     padding-top: 50px;
     padding-bottom: 50px;}
@@ -258,39 +352,4 @@ label {
 }
 .swiperbutt::after, .swiperbutt::before{
     font-size: 20px !important;
-}
-/* +++++++++++++ */
-.feedback-avt{
-    width: 100px;
-    margin: 0 auto;
-}
-.feedback-avt img{
-    width: 100%;
-    border-radius: 50%;
-    margin: 0 0 10px 0;
-}
-.rating i{
-    color: gold;
-}
-div.text{
-    width: 80%;
-    margin: 0 auto;
-}
-.text i{
-    font-size: 2rem;
-}
-.feedback-rate{
-    text-align: center;
-}
-@media(max-width:768px){
-    .toggle-menu{
-        display: block;
-    }
-    nav{
-        flex-direction: column;
-    }
-    nav a{
-        display: none;
-    }
-
 }
