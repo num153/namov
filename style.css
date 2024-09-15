@@ -13,7 +13,9 @@
     scroll-behavior: smooth;
 }
 
-
+::-webkit-scrollbar{
+    display: none;
+}
 
 body {
     font-weight: 300;
@@ -38,7 +40,7 @@ a {
 
 
 .linkplay .link a{
-    background: linear-gradient(8deg,#2c177f,hsl(294, 73%, 29%));
+    background: linear-gradient(8deg,#600303,hsl(0, 59%, 46%));
     border-radius: 50%;
     padding: 5px;
     width: 40px;
@@ -46,7 +48,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 2px 6px #35013b;
+    box-shadow: 0px 2px 6px #020202;
     transition: all .5s;
     position: relative;
 }
@@ -86,6 +88,7 @@ body{
 h1{
     margin: 0;
 }
+
 /* KHU VUC NAV BAR */
 .menu li {
     list-style: none;
@@ -191,6 +194,7 @@ dl,ol,ul{
 
     .nav-menu.active {
         left: 0;
+        padding: 0;
     }
 
     .nav-item {
@@ -280,9 +284,9 @@ dl,ol,ul{
 }
 .faq-one.active .answer{
     max-height: max-content;
-    transition: max-height 0.5s ease-in;
+    transition: 0.5s!important;
 }
-.faq-one.active i{
+.faq-one.active .tieudeth i{
     transform: rotate(180deg);
 }
 /*=============*/
@@ -595,7 +599,6 @@ header+* {
 
 /* ----------/------------------------------------------------ */
 .allfilm {
-    /* background-color: aqua; */
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
@@ -634,6 +637,20 @@ header+* {
     overflow: hidden;
     width: 100%;
     height: max-content!important;
+}
+.allfilm a div{
+    position: relative;
+}
+.allfilm a div span{
+    color: var(--text-color);
+    background-color: var(--color-light);
+    position: absolute;
+    right: 0px;
+    top: 0;
+    padding: 0px 10px;
+    opacity: 0.8;
+    border-radius: 0px 5px 0px 5px;
+    font-weight: 700;
 }
 .allfilm a img {
     width: 100%;
