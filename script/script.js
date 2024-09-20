@@ -65,7 +65,29 @@ navLink.forEach(n => {
 //FAQS toggle
 const fag = document.querySelectorAll('.faq-one');
 for(let f of fag){
-  f.addEventListener("click",function(){
+  const title = f.querySelector('.tieudeth');
+  title.addEventListener("click",function(){
     f.classList.toggle("active");
   });
-}
+};
+
+//back ra thi se ve lai vi tri cuon trang da click
+window.onload = function() {
+  // Lấy vị trí cuộn đã lưu
+  const savedPosition = localStorage.getItem('scrollPosition');
+  
+  // Nếu có vị trí cuộn đã lưu, cuộn trang đến đúng vị trí đó
+  if (savedPosition) {
+      window.scrollTo(0, parseInt(savedPosition));
+      // Xóa vị trí sau khi cuộn để tránh cuộn lại lần sau
+      localStorage.removeItem('scrollPosition');
+  }
+};
+const filmLinks = document.querySelectorAll('a[href*="html"]');
+filmLinks.forEach(link => {
+    link.addEventListener('click', function () {
+        // Lưu vị trí cuộn của trang hiện tại vào localStorage
+        localStorage.setItem('scrollPosition', window.scrollY);
+    });
+});
+

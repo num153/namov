@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Phim</title>
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/video-js.css">
+    <style>
+        .movie-list {
+            list-style: none;
+            padding: 0;
+        }
+        .movie-list li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Video Player</h1>
+    <video id="my-video" class="video-js" controls preload="auto" width="640" height="264">
+        <source src="" type="application/x-mpegURL" id="video-source">
+        <p class="vjs-no-js">
+            Để xem video này, vui lòng bật JavaScript và xem trên trình duyệt hỗ trợ video.
+        </p>
+    </video>
+
+    <h2>Danh Sách Phim</h2>
+    <ul class="movie-list">
+        <li><a href="#" data-src="https://vn04.quaivat.com/002/bruce_almighty_2003/ba_2003.m3u8">Phim 1</a></li>
+        <li><a href="#" data-src="https://vn03.quaivat.com/the_dark_knight_rises_2012/tdkr_2012.m3u8">Phim 2</a></li>
+        <li><a href="#" data-src="movies/movie3.mp4">Phim 3</a></li>
+        <!-- Thêm các phim khác ở đây -->
+    </ul>
+
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script>
+    const videoLinks = document.querySelectorAll('.movie-list a');
+    const player = videojs('my-video');
+
+    videoLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+            const newSrc = this.getAttribute('data-src');
+
+            // Cập nhật source cho video
+            player.src({ type: 'application/x-mpegURL', src: newSrc });
+            player.play(); // Phát video
+        });
+    });
+
+    // Kiểm tra hỗ trợ HLS
+    if (Hls.isSupported()) {
+        const video = document.getElementById('my-video');
+        const hls = new Hls();
+        
+        video.addEventListener('loadedmetadata', function() {
+            hls.loadSource(videoSource.src);
+            hls.attachMedia(video);
+        });
+    }
+</script>
+
+
+</body>
+</html>
