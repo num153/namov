@@ -9,6 +9,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <link rel="shortcut icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Netflix_icon.svg/2048px-Netflix_icon.svg.png">
 </head>
 <body>
@@ -73,7 +75,7 @@
                 </div>
         </section>
         
-        <section>
+        <!-- <section>
             <div class="swiper movie">
                 <div class="swiper-wrapper movie-list">
                   <div class="swiper-slide movie-slide">
@@ -130,7 +132,79 @@
                   </div>
                 </div>
               </div>
+        </section> -->
+
+
+        <section class="slider_container">
+            <span class="main-tit">Phim Hongkong số 1</span>
+            <div class="container">
+                <div class="swiper movie_slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="img_box">
+                                <img src="./img/vuahaikich.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="img_box">
+                                <img src="./img/quocsan007.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="img_box">
+                                <img src="./img/bachbientinhquan.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="img_box">
+                                <img src="./img/cuongthitiensinh.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="img_box">
+                                <img src="./img/vuaphahoai.webp" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>   
         </section>
+
+        <script>
+            var swiper = new Swiper(".movie_slider", {
+              slidesPerView: 5,
+              spaceBetween: 30,
+              navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+              pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+                },
+                768: {
+                slidesPerView: 2,
+                spaceBetween: 40,
+                },
+                1024: {
+                slidesPerView: 3,
+                spaceBetween: 50,
+                },
+            },
+            });
+          </script>
+
+
+
+
     </main>
     <script src="script/script.js"></script>
 </body>
