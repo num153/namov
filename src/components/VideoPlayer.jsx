@@ -3,6 +3,8 @@ import Artplayer from 'artplayer';
 import Hls from 'hls.js';
 import { AlertCircle, Server, Zap, Play, RefreshCw } from 'lucide-react';
 
+const isMobile = typeof window !== 'undefined' && window.innerWidth <= 600;
+
 export default function VideoPlayer({ movie, activeSourceIndex = 0, onSourceChange }) {
   const artRef = useRef(null);
   const playerInstanceRef = useRef(null);
@@ -101,17 +103,17 @@ export default function VideoPlayer({ movie, activeSourceIndex = 0, onSourceChan
         isLive: false,
         muted: false,
         autoplay: false,
-        pip: true,
+        pip: !isMobile,
         autoSize: false,
         autoMini: false,
-        screenshot: true,
+        screenshot: !isMobile,
         setting: true,
         loop: false,
         flip: true,
         playbackRate: true,
         aspectRatio: true,
         fullscreen: true,
-        fullscreenWeb: true,
+        fullscreenWeb: false,
         miniProgressBar: false, // Ẩn thanh thời gian nhỏ màu đỏ dưới đáy khi đang xem
         mutex: true,
         backdrop: true,
@@ -146,8 +148,14 @@ export default function VideoPlayer({ movie, activeSourceIndex = 0, onSourceChan
           name: 'backward-10',
           position: 'left',
           index: 10,
-          html: '<span class="art-icon" style="display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0 3px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><text x="12" y="15.5" font-size="8" font-family="Arial, sans-serif" font-weight="900" fill="currentColor" text-anchor="middle" stroke="none">10</text></svg></span>',
-          tooltip: '(Phím ←)',
+          html: `<span class="art-skip-btn" title="Tua lại 10s (←)">
+            <svg viewBox="0 0 36 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6C11.373 6 6 11.373 6 18s5.373 12 12 12 12-5.373 12-12H28c0 5.523-4.477 10-10 10S8 23.523 8 18 12.477 8 18 8V6z"/>
+              <path d="M18 6l-5 5 5 5V6z"/>
+              <text x="18" y="22" font-size="9" font-family="Arial,sans-serif" font-weight="700" text-anchor="middle" fill="currentColor">10</text>
+            </svg>
+          </span>`,
+          tooltip: '(← 10s)',
           click: function () {
             if (art.currentTime) {
               art.currentTime = Math.max(0, art.currentTime - 10);
@@ -159,8 +167,14 @@ export default function VideoPlayer({ movie, activeSourceIndex = 0, onSourceChan
           name: 'forward-10',
           position: 'left',
           index: 11,
-          html: '<span class="art-icon" style="display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0 3px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><text x="12" y="15.5" font-size="8" font-family="Arial, sans-serif" font-weight="900" fill="currentColor" text-anchor="middle" stroke="none">10</text></svg></span>',
-          tooltip: '(Phím →)',
+          html: `<span class="art-skip-btn" title="Tua tới 10s (→)">
+            <svg viewBox="0 0 36 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6c6.627 0 12 5.373 12 12s-5.373 12-12 12S6 23.523 6 18H8c0 5.523 4.477 10 10 10s10-4.477 10-10S23.523 8 18 8V6z"/>
+              <path d="M18 6l5 5-5 5V6z"/>
+              <text x="18" y="22" font-size="9" font-family="Arial,sans-serif" font-weight="700" text-anchor="middle" fill="currentColor">10</text>
+            </svg>
+          </span>`,
+          tooltip: '(10s →)',
           click: function () {
             if (art.currentTime !== undefined) {
               art.currentTime = Math.min(art.duration || 999999, art.currentTime + 10);
@@ -398,9 +412,73 @@ export default function VideoPlayer({ movie, activeSourceIndex = 0, onSourceChan
           font-size: 12px;
         }
 
+        /* Nút tua 10 giây */
+        .art-skip-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 28px;
+          height: 28px;
+          cursor: pointer;
+          opacity: 0.85;
+          transition: opacity 0.15s, transform 0.15s;
+          color: #fff;
+        }
+        .art-skip-btn:hover {
+          opacity: 1;
+          transform: scale(1.12);
+        }
+        .art-skip-btn svg {
+          width: 22px;
+          height: 22px;
+        }
+
         @media (max-width: 600px) {
           .player-wrapper {
             border-radius: 8px;
+          }
+
+          /* Thu nhỏ toàn bộ control bar Artplayer trên mobile */
+          .art-controls {
+            padding: 0 4px !important;
+            height: 38px !important;
+          }
+          .art-control-time {
+            font-size: 10px !important;
+          }
+          .art-icon {
+            width: 28px !important;
+            height: 28px !important;
+          }
+          .art-icon svg {
+            width: 16px !important;
+            height: 16px !important;
+          }
+          .art-volume {
+            width: 52px !important;
+          }
+          .art-skip-btn {
+            width: 22px !important;
+            height: 22px !important;
+          }
+          .art-skip-btn svg {
+            width: 18px !important;
+            height: 18px !important;
+          }
+          /* Ẩn nút Screenshot và PiP trên mobile - không cần thiết */
+          .art-control-screenshot,
+          .art-control-pip {
+            display: none !important;
+          }
+          /* CC button nhỏ hơn */
+          .art-icon-cc {
+            font-size: 9px !important;
+            padding: 1px 3px !important;
+            border-width: 1px !important;
+          }
+          /* Nút settings + fullscreen giữ nguyên, chỉ padding nhỏ hơn */
+          .art-controls-right .art-icon {
+            width: 26px !important;
           }
         }
       `}</style>
