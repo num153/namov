@@ -6,8 +6,22 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const url = process.env.VITE_SUPABASE_URL || 'https://ksyrtesvmqgozwomaqte.supabase.co';
-const key = process.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtzeXJ0ZXN2bXFnb3p3b21hcXRlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE1MjkyNjksImV4cCI6MjEwNzEwNTI2OX0.2VEfFTFhOxA-A80hmyjOK8bPE939YG1zKsvHHP_jBDc';
+let url = process.env.VITE_SUPABASE_URL;
+let key = process.env.VITE_SUPABASE_ANON_KEY;
+
+const envPath = path.join(__dirname, '../.env');
+if (fs.existsSync(envPath)) {
+  const envContent = fs.readFileSync(envPath, 'utf8');
+  const urlMatch = envContent.match(/VITE_SUPABASE_URL=(.*)/);
+  const keyMatch = envContent.match(/VITE_SUPABASE_ANON_KEY=(.*)/);
+  if (urlMatch && !url) url = urlMatch[1].trim();
+  if (keyMatch && !key) key = keyMatch[1].trim();
+}
+
+if (!url || !key) {
+  console.error('❌ Lỗi: Vui lòng thiết lập VITE_SUPABASE_URL và VITE_SUPABASE_ANON_KEY trong file .env!');
+  process.exit(1);
+}
 
 const supabase = createClient(url, key);
 

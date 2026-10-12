@@ -74,7 +74,11 @@ export default function AdminPage() {
   // Handle Login
   const handleLogin = (e) => {
     e.preventDefault();
-    const correctPassword = import.meta.env.VITE_ADMIN_PASSWORD || '25081503';
+    const correctPassword = import.meta.env.VITE_ADMIN_PASSWORD;
+    if (!correctPassword) {
+      setAuthError('Chưa thiết lập biến VITE_ADMIN_PASSWORD trong .env hoặc Vercel!');
+      return;
+    }
     if (passwordInput === correctPassword) {
       setIsAuthenticated(true);
       sessionStorage.setItem('namov_admin_auth', 'true');
