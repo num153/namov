@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Lock, KeyRound, Film, PlusCircle, Trash2, ExternalLink, 
-  CheckCircle2, AlertCircle, RefreshCw, Eye, Sparkles, LogOut, 
+import {
+  Lock, KeyRound, Film, PlusCircle, Trash2, ExternalLink,
+  CheckCircle2, AlertCircle, RefreshCw, Eye, Sparkles, LogOut,
   Home, Search, Filter, Layers, Play
 } from 'lucide-react';
 import { movieService } from '../services/movieService';
@@ -74,7 +74,7 @@ export default function AdminPage() {
   // Handle Login
   const handleLogin = (e) => {
     e.preventDefault();
-    const correctPassword = import.meta.env.VITE_ADMIN_PASSWORD || 'namov123';
+    const correctPassword = import.meta.env.VITE_ADMIN_PASSWORD || '25081503';
     if (passwordInput === correctPassword) {
       setIsAuthenticated(true);
       sessionStorage.setItem('namov_admin_auth', 'true');
@@ -207,7 +207,7 @@ export default function AdminPage() {
   const filteredExistingMovies = useMemo(() => {
     return allMovies.filter(m => {
       const matchCat = selectedFilterCategory === 'all' || m.category === selectedFilterCategory;
-      const matchQuery = !searchQuery || 
+      const matchQuery = !searchQuery ||
         m.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
         m.id?.toLowerCase().includes(searchQuery.toLowerCase());
       return matchCat && matchQuery;
@@ -223,7 +223,7 @@ export default function AdminPage() {
             <Lock size={32} color="#e50914" />
           </div>
           <h2>Bảo Mật Quản Trị</h2>
-          <p className="lock-subtitle">Trang dành riêng cho người quản trị NAM.OV. Vui lòng nhập mật khẩu để tiếp tục.</p>
+          <p className="lock-subtitle">Ngày sinh Ngố và Húi viết liền</p>
 
           <form onSubmit={handleLogin} className="lock-form">
             <div className="input-group">
@@ -441,8 +441,8 @@ export default function AdminPage() {
               <div className="form-row">
                 <div className="form-group">
                   <label>Danh mục <span className="req">*</span></label>
-                  <select 
-                    value={category} 
+                  <select
+                    value={category}
                     onChange={(e) => setCategory(e.target.value)}
                   >
                     <option value="dienanh">Điện Ảnh Chiếu Rạp (dienanh)</option>
@@ -453,7 +453,7 @@ export default function AdminPage() {
 
                 <div className="form-group">
                   <label>
-                    Mã ID / Slug 
+                    Mã ID / Slug
                     <small style={{ color: '#9ca3af', marginLeft: 4 }}>(Tự động tạo)</small>
                   </label>
                   <input
@@ -563,8 +563,8 @@ export default function AdminPage() {
               </div>
 
               {/* Submit Button */}
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className="btn-submit-movie"
                 disabled={loading}
               >
@@ -644,8 +644,8 @@ export default function AdminPage() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
                 </div>
-                <select 
-                  value={selectedFilterCategory} 
+                <select
+                  value={selectedFilterCategory}
                   onChange={(e) => setSelectedFilterCategory(e.target.value)}
                   className="cat-filter-select"
                 >
@@ -663,10 +663,10 @@ export default function AdminPage() {
                 ) : (
                   filteredExistingMovies.slice(0, 50).map((m) => (
                     <div key={m.id} className="movie-item-row">
-                      <img 
-                        src={m.poster || '/img/banner1.jpg'} 
-                        alt={m.title} 
-                        className="item-thumb" 
+                      <img
+                        src={m.poster || '/img/banner1.jpg'}
+                        alt={m.title}
+                        className="item-thumb"
                         onError={(e) => { e.target.src = '/img/banner1.jpg'; }}
                       />
                       <div className="item-info">
@@ -677,10 +677,10 @@ export default function AdminPage() {
                         </div>
                       </div>
                       <div className="item-actions">
-                        <Link 
-                          to={`/watch/${m.id}`} 
-                          target="_blank" 
-                          className="btn-item-action btn-view" 
+                        <Link
+                          to={`/watch/${m.id}`}
+                          target="_blank"
+                          className="btn-item-action btn-view"
                           title="Xem thử phim"
                         >
                           <Play size={13} />
