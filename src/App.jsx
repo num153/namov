@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import WatchPage from './pages/WatchPage';
 import CollectionPage from './pages/CollectionPage';
 import AboutPage from './pages/AboutPage';
+import AdminPage from './pages/AdminPage';
 import BackToTop from './components/BackToTop';
 import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
 
@@ -107,6 +108,7 @@ export default function App() {
             <Route path="/watch/:id" element={<WatchPage />} />
             <Route path="/collection" element={<CollectionPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/admin" element={<AdminPage />} />
             {/* Catch all fallback */}
             <Route path="*" element={<HomePage />} />
           </Routes>

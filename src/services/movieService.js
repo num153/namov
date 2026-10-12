@@ -167,6 +167,56 @@ export const movieService = {
     }
   },
 
+  // Thêm phim mới trực tiếp lên Supabase
+  async addMovie(movieData) {
+    try {
+      const now = new Date().toISOString();
+      const payload = {
+        ...movieData,
+        id: String(movieData.id),
+        updated_at: now
+      };
+
+      const { data, error } = await supabase
+        .from('movies')
+        .upsert([payload], { onConflict: 'id' })
+        .select();
+
+      if (error) throw error;
+
+      const created = data && data[0] ? data[0] : payload;
+
+      // Đưa phim mới lên đầu danh sách in-memory để hiển thị ngay
+      activeMovies = [created, ...activeMovies.filter(m => String(m.id) !== String(created.id))];
+      notifyListeners();
+
+      return { success: true, data: created };
+    } catch (err) {
+      console.error('Error adding movie to Supabase:', err);
+      return { success: false, error: err.message };
+    }
+  },
+
+  // Xóa phim khỏi Supabase
+  async deleteMovie(id) {
+    try {
+      const { error } = await supabase
+        .from('movies')
+        .delete()
+        .eq('id', String(id));
+
+      if (error) throw error;
+
+      activeMovies = activeMovies.filter(m => String(m.id) !== String(id));
+      notifyListeners();
+
+      return { success: true };
+    } catch (err) {
+      console.error('Error deleting movie from Supabase:', err);
+      return { success: false, error: err.message };
+    }
+  },
+
   // Tích hợp API phim ngoài (OPhim) nếu người dùng muốn khám phá thêm
   async fetchExternalMovies(page = 1) {
     try {
