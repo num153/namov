@@ -93,34 +93,12 @@ export default function WatchPage() {
     } catch (e) {}
   };
 
-  if (loading) {
-    return (
-      <div className="container watch-page-loading">
-        <div className="spinner"></div>
-        <p>Đang chuẩn bị luồng phát phim...</p>
-      </div>
-    );
-  }
-
-  if (!movie) {
-    return (
-      <div className="container not-found-wrapper">
-        <Film size={54} color="var(--accent-red)" />
-        <h2>Không tìm thấy bộ phim yêu cầu</h2>
-        <p>Có thể liên kết đã thay đổi hoặc phim đã được cập nhật đường dẫn mới.</p>
-        <Link to="/" className="btn btn-primary">
-          <ArrowLeft size={16} /> Quay lại trang chủ
-        </Link>
-      </div>
-    );
-  }
-
-  const sources = movie.streams || movie.sources || [];
+  const sources = movie?.streams || movie?.sources || [];
   const hasSources = sources.length > 0;
-  const franchise = movie.franchise;
+  const franchise = movie?.franchise;
   const hasFranchise = franchise && franchise.parts && franchise.parts.length > 1;
 
-  // Tách biệt các mùa (Seasons) nếu phim có nhiều season/tập
+  // Tách biệt các mùa (Seasons) nếu phim có nhiều season/tập (gọi Hook ở cấp đầu tiên)
   const seasonGroups = useMemo(() => {
     if (!sources || sources.length === 0) return null;
     const hasMultipleSeasons = sources.some(s => {
@@ -150,6 +128,28 @@ export default function WatchPage() {
 
     return groups;
   }, [sources]);
+
+  if (loading) {
+    return (
+      <div className="container watch-page-loading">
+        <div className="spinner"></div>
+        <p>Đang chuẩn bị luồng phát phim...</p>
+      </div>
+    );
+  }
+
+  if (!movie) {
+    return (
+      <div className="container not-found-wrapper">
+        <Film size={54} color="var(--accent-red)" />
+        <h2>Không tìm thấy bộ phim yêu cầu</h2>
+        <p>Có thể liên kết đã thay đổi hoặc phim đã được cập nhật đường dẫn mới.</p>
+        <Link to="/" className="btn btn-primary">
+          <ArrowLeft size={16} /> Quay lại trang chủ
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="watch-page animate-fade-in">
