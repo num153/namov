@@ -9,13 +9,13 @@ export default function MovieCard({ movie }) {
   const streamsList = movie.streams || movie.sources || [];
   const hasM3U8 = streamsList.some(s => s.type === 'm3u8');
   const franchise = movie.franchise;
-  const isSeries = franchise && franchise.parts && franchise.parts.length > 1;
-  const seriesCount = isSeries ? franchise.parts.length : 0;
-  const seriesLabel = isSeries
-    ? (franchise.name?.includes('Tập') || franchise.parts.some(p => p.name?.startsWith('Tập'))
+  const isSeries = (franchise && franchise.parts && franchise.parts.length > 1) || !!movie.seriesLabel;
+  const seriesCount = isSeries ? (franchise?.parts?.length || 2) : 0;
+  const seriesLabel = movie.seriesLabel || (isSeries
+    ? (franchise?.name?.includes('Tập') || franchise?.parts?.some(p => p.name?.startsWith('Tập'))
         ? `${seriesCount} Tập`
         : `${seriesCount} Phần`)
-    : null;
+    : null);
 
   useEffect(() => {
     try {

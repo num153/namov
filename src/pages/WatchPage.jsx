@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { movieService } from '../services/movieService';
 import VideoPlayer from '../components/VideoPlayer';
@@ -120,6 +120,37 @@ export default function WatchPage() {
   const franchise = movie.franchise;
   const hasFranchise = franchise && franchise.parts && franchise.parts.length > 1;
 
+  // Tách biệt các mùa (Seasons) nếu phim có nhiều season/tập
+  const seasonGroups = useMemo(() => {
+    if (!sources || sources.length === 0) return null;
+    const hasMultipleSeasons = sources.some(s => {
+      const name = s.server || s.name || '';
+      return name.startsWith('SS0') || name.startsWith('S1') || name.startsWith('S2') || s.season;
+    });
+
+    if (!hasMultipleSeasons) return null;
+
+    const groups = {};
+    sources.forEach((src, idx) => {
+      const name = src.server || src.name || '';
+      let groupKey = 'Khác';
+      if (src.season) {
+        groupKey = src.season;
+      } else if (name.startsWith('SS01') || name.startsWith('S1')) {
+        groupKey = 'Mùa 1 (Season 1)';
+      } else if (name.startsWith('SS02') || name.startsWith('S2')) {
+        groupKey = 'Mùa 2 (Season 2)';
+      } else if (name.startsWith('SS03') || name.startsWith('S3')) {
+        groupKey = 'Mùa 3 (Season 3)';
+      }
+
+      if (!groups[groupKey]) groups[groupKey] = [];
+      groups[groupKey].push({ src, originalIndex: idx });
+    });
+
+    return groups;
+  }, [sources]);
+
   return (
     <div className="watch-page animate-fade-in">
       <div className="container watch-container">
@@ -184,29 +215,63 @@ export default function WatchPage() {
           </div>
         )}
 
-        {/* Server Switcher Bar */}
+        {/* Server / Season Switcher Bar */}
         {hasSources && (
           <div className="server-switcher-card glass-panel">
-            <div className="server-label">
-              <Server size={17} color="var(--accent-red)" />
-              <span>Máy Chủ Phát:</span>
-            </div>
-            <div className="server-list">
-              {sources.map((src, idx) => {
-                const isM3U8 = src.type === 'm3u8';
-                const isActive = idx === activeSourceIndex;
-                return (
-                  <button
-                    key={idx}
-                    className={`server-btn ${isActive ? 'active' : ''}`}
-                    onClick={() => setActiveSourceIndex(idx)}
-                  >
-                    {isM3U8 && <Zap size={13} color="#10b981" />}
-                    <span>{src.server || src.name || `Server ${idx + 1}`}</span>
-                  </button>
-                );
-              })}
-            </div>
+            {seasonGroups ? (
+              <div className="seasons-container">
+                {Object.entries(seasonGroups).map(([seasonName, epList]) => (
+                  <div key={seasonName} className="season-group-block">
+                    <div className="season-group-header">
+                      <div className="season-group-title">
+                        <Layers size={15} color="var(--accent-red)" />
+                        <span>{seasonName}</span>
+                      </div>
+                      <span className="season-group-count">{epList.length} Tập</span>
+                    </div>
+                    <div className="server-list episode-list">
+                      {epList.map(({ src, originalIndex }) => {
+                        const isM3U8 = src.type === 'm3u8';
+                        const isActive = originalIndex === activeSourceIndex;
+                        return (
+                          <button
+                            key={originalIndex}
+                            className={`server-btn ep-btn ${isActive ? 'active' : ''}`}
+                            onClick={() => setActiveSourceIndex(originalIndex)}
+                          >
+                            {isM3U8 && <Zap size={12} color="#10b981" />}
+                            <span>{src.server || src.name || `Tập ${originalIndex + 1}`}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <>
+                <div className="server-label">
+                  <Server size={17} color="var(--accent-red)" />
+                  <span>Máy Chủ Phát:</span>
+                </div>
+                <div className="server-list">
+                  {sources.map((src, idx) => {
+                    const isM3U8 = src.type === 'm3u8';
+                    const isActive = idx === activeSourceIndex;
+                    return (
+                      <button
+                        key={idx}
+                        className={`server-btn ${isActive ? 'active' : ''}`}
+                        onClick={() => setActiveSourceIndex(idx)}
+                      >
+                        {isM3U8 && <Zap size={13} color="#10b981" />}
+                        <span>{src.server || src.name || `Server ${idx + 1}`}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </>
+            )}
           </div>
         )}
 
@@ -442,6 +507,51 @@ export default function WatchPage() {
           border-color: var(--accent-red);
           color: #fff;
           box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);
+        }
+        .seasons-container {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          width: 100%;
+        }
+        .season-group-block {
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.07);
+          border-radius: var(--radius-md);
+          padding: 12px 14px;
+        }
+        .season-group-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 10px;
+          padding-bottom: 8px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .season-group-title {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          font-weight: 700;
+          font-size: 13.5px;
+          color: #fff;
+        }
+        .season-group-count {
+          font-size: 11px;
+          color: #9ca3af;
+          background: rgba(255, 255, 255, 0.06);
+          padding: 2px 8px;
+          border-radius: 12px;
+          font-weight: 600;
+        }
+        .episode-list {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+        .ep-btn {
+          min-width: 90px;
+          justify-content: center;
         }
         .movie-detail-card {
           background: var(--bg-card);

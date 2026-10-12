@@ -18,104 +18,118 @@
     ],
     "streams": [
       {
-        "server": "S1 - Tập Tập 01",
-        "name": "Mùa 1 - Tập Tập 01",
+        "server": "SS01 - 01",
+        "name": "SS01 - 01",
         "url": "https://s2.phim1280.tv/20231209/cvVPefmF/index.m3u8",
         "type": "m3u8"
       },
       {
-        "server": "S1 - Tập Tập 02",
-        "name": "Mùa 1 - Tập Tập 02",
+        "server": "SS01 - 02",
+        "name": "SS01 - 02",
         "url": "https://s2.phim1280.tv/20231209/g7hjnqez/index.m3u8",
         "type": "m3u8"
       },
       {
-        "server": "S1 - Tập Tập 03",
-        "name": "Mùa 1 - Tập Tập 03",
+        "server": "SS01 - 03",
+        "name": "SS01 - 03",
         "url": "https://s2.phim1280.tv/20231209/deMgXrZ4/index.m3u8",
         "type": "m3u8"
       },
       {
-        "server": "S1 - Tập Tập 04",
-        "name": "Mùa 1 - Tập Tập 04",
+        "server": "SS01 - 04",
+        "name": "SS01 - 04",
         "url": "https://s2.phim1280.tv/20231209/o1oFZnQ0/index.m3u8",
         "type": "m3u8"
       },
       {
-        "server": "S1 - Tập Tập 05",
-        "name": "Mùa 1 - Tập Tập 05",
+        "server": "SS01 - 05",
+        "name": "SS01 - 05",
         "url": "https://s2.phim1280.tv/20231209/V0J9DnT1/index.m3u8",
         "type": "m3u8"
       },
       {
-        "server": "S1 - Tập Tập 06",
-        "name": "Mùa 1 - Tập Tập 06",
+        "server": "SS01 - 06",
+        "name": "SS01 - 06",
         "url": "https://s2.phim1280.tv/20231209/VdeTHMCj/index.m3u8",
         "type": "m3u8"
       },
       {
-        "server": "S1 - Tập Tập 07",
-        "name": "Mùa 1 - Tập Tập 07",
+        "server": "SS01 - 07",
+        "name": "SS01 - 07",
         "url": "https://s2.phim1280.tv/20231209/QYCSmRjK/index.m3u8",
         "type": "m3u8"
       },
       {
-        "server": "S1 - Tập Tập 08",
-        "name": "Mùa 1 - Tập Tập 08",
+        "server": "SS01 - 08",
+        "name": "SS01 - 08",
         "url": "https://s2.phim1280.tv/20231209/ckOhJfCY/index.m3u8",
         "type": "m3u8"
       },
       {
-        "server": "S2 - Tập Tập 01",
-        "name": "Mùa 2 - Tập Tập 01",
+        "server": "SS02 - 01",
+        "name": "SS02 - 01",
         "url": "https://s5.phim1280.tv/20250116/Dhauq5qz/index.m3u8",
         "type": "m3u8"
       },
       {
-        "server": "S2 - Tập Tập 02",
-        "name": "Mùa 2 - Tập Tập 02",
+        "server": "SS02 - 02",
+        "name": "SS02 - 02",
         "url": "https://s5.phim1280.tv/20250116/Pw0Mn98V/index.m3u8",
         "type": "m3u8"
       },
       {
-        "server": "S2 - Tập Tập 03",
-        "name": "Mùa 2 - Tập Tập 03",
+        "server": "SS02 - 03",
+        "name": "SS02 - 03",
         "url": "https://s5.phim1280.tv/20250116/oPli8xOq/index.m3u8",
         "type": "m3u8"
       },
       {
-        "server": "S2 - Tập Tập 04",
-        "name": "Mùa 2 - Tập Tập 04",
+        "server": "SS02 - 04",
+        "name": "SS02 - 04",
         "url": "https://s5.phim1280.tv/20250116/VVX03sFa/index.m3u8",
         "type": "m3u8"
       },
       {
-        "server": "S2 - Tập Tập 05",
-        "name": "Mùa 2 - Tập Tập 05",
+        "server": "SS02 - 05",
+        "name": "SS02 - 05",
         "url": "https://s5.phim1280.tv/20250116/4DkQRQND/index.m3u8",
         "type": "m3u8"
       },
       {
-        "server": "S2 - Tập Tập 06",
-        "name": "Mùa 2 - Tập Tập 06",
+        "server": "SS02 - 06",
+        "name": "SS02 - 06",
         "url": "https://s5.phim1280.tv/20250116/MR7Yzz31/index.m3u8",
         "type": "m3u8"
       },
       {
-        "server": "S2 - Tập Tập 07",
-        "name": "Mùa 2 - Tập Tập 07",
+        "server": "SS02 - 07",
+        "name": "SS02 - 07",
         "url": "https://s5.phim1280.tv/20250116/9JDoeqMK/index.m3u8",
         "type": "m3u8"
       },
       {
-        "server": "S2 - Tập Tập 08",
-        "name": "Mùa 2 - Tập Tập 08",
+        "server": "SS02 - 08",
+        "name": "SS02 - 08",
         "url": "https://s5.phim1280.tv/20250116/UJp25Aq2/index.m3u8",
         "type": "m3u8"
       }
     ],
     "subtitles": [],
-    "franchise": null
+    "franchise": {
+      "id": "teotfw-series",
+      "name": "The End of the F***ing World",
+      "parts": [
+        {
+          "id": "dienanh-the-end-of-the-fucking-world",
+          "name": "Phần 1"
+        },
+        {
+          "id": "dienanh-the-end-of-the-fucking-world-s2",
+          "name": "Phần 2"
+        }
+      ]
+    },
+    "seriesLabel": "2 Phần"
   },
   {
     "id": "dienanh-modern-times-1936",
