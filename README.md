@@ -1,14 +1,9 @@
 # 🎬 NAM.OV - Nền Tảng Xem Phim Trực Tuyến & Streaming M3U8
 
-Trang web xem phim trực tuyến hiện đại được phát triển trên nền tảng **Vite + React**, hỗ trợ stream trực tiếp qua luồng **HLS `.m3u8`** tốc độ cao, tích hợp tuyển tập 120+ phim kinh điển (Châu Tinh Trì, Điện Ảnh Hollywood, Anime) cùng giao diện Dark Mode tối ưu cho thiết bị di động.
-
-> 💖 **Tác giả:** Phát triển và thiết kế bởi **Nam Phương**.
-
+Trang web xem phim cá nhân phát triển trên nền tảng **Vite + React**, hỗ trợ stream trực tiếp qua luồng **HLS `.m3u8`** tốc độ cao, tích hợp tuyển tập 120+ phim kinh điển (Châu Tinh Trì, Điện Ảnh Hollywood, Anime). Dự án thuộc dạng movies collection cá nhân nên chỉ lưu những bộ phim cá nhân thấy ấn tượng và yêu thích.
 ---
 
-## ⚡ Hướng Dẫn Cài Đặt & Chạy Trên Máy Khác
-
-Khi clone repository này về bất kỳ máy tính nào, bạn chỉ cần thực hiện 3 bước đơn giản:
+## ⚡ Hướng Dẫn Khởi Tạo trên máy của bạn
 
 ### 1. Clone repository về máy
 ```bash
