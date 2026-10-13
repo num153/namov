@@ -1,6 +1,12 @@
 # 🎬 NAM.OV - Nền Tảng Xem Phim Trực Tuyến & Streaming M3U8
 
-Trang web xem phim cá nhân phát triển trên nền tảng **Vite + React**, hỗ trợ stream trực tiếp qua luồng **HLS `.m3u8`** tốc độ cao, tích hợp tuyển tập 120+ phim kinh điển (Châu Tinh Trì, Điện Ảnh Hollywood, Anime). Dự án thuộc dạng movies collection cá nhân nên chỉ lưu những bộ phim cá nhân thấy ấn tượng và yêu thích.
+- Trang web xem phim cá nhân phát triển trên nền tảng **Vite + React**, hỗ trợ stream trực tiếp qua luồng **HLS `.m3u8`** tốc độ cao, tích hợp tuyển tập 120+ phim kinh điển (Châu Tinh Trì, Điện Ảnh Hollywood, Anime). Dự án thuộc dạng movies collection cá nhân nên chỉ lưu những bộ phim cá nhân thấy ấn tượng và yêu thích.
+- ## 🌐 Namov Watch
+
+Visit the website: [namov-watch.vercel.app](https://namov-watch.vercel.app/)
+
+### 📸 Website Preview
+[![namov-watch-vercel-app-(1).png](https://i.postimg.cc/XJbFj0t6/namov-watch-vercel-app-(1).png)](https://postimg.cc/LqxhDGHx)
 ---
 
 ## ⚡ Hướng Dẫn Khởi Tạo trên máy của bạn
